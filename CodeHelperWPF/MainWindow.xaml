@@ -1,0 +1,58 @@
+﻿<Window x:Class="CodeHelperWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CodeHelperWPF"
+        xmlns:vm="clr-namespace:CodeHelperWPF.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="545.082" Width="685.656">
+
+    <!--<window.datacontext>
+        <vm:codedataviewmodel />
+    </window.datacontext>-->
+
+    <Grid x:Name="grid" Margin="0,30,-8,-6">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200px" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="150px"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="tbFind" Grid.Column="1" Height="23" VerticalAlignment="Top" Margin="10,10,33,0"/>
+        <Menu x:Name="menu" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="24" Margin="-3,-30,0,0" VerticalAlignment="Top" Width="683">
+            <MenuItem Cursor="Hand" Header="Files"/>
+            <MenuItem Cursor="Hand" Header="View"/>
+            <MenuItem Cursor="Hand" Header="Settings"/>
+            <MenuItem Cursor="Hand" Header="Help"/>
+        </Menu>
+        <ComboBox x:Name="comboBox" Grid.Column="1" Margin="335,11,21,0" VerticalAlignment="Top" SelectedIndex="0" ItemsSource="{Binding Items}" Grid.ColumnSpan="2">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Language}"></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label Grid.Column="1" HorizontalAlignment="Left" Margin="10,48,0,408" Width="416" Grid.ColumnSpan="2"/>
+        <TreeView Margin="10,10,10,30" Height="{Binding ElementName=grid, Mode=OneWay}" >
+            <TreeViewItem Header="Design Patterns">
+                <TreeViewItem Header="item1"/>
+                <TreeViewItem Header="item2"/>
+                <TreeViewItem Header="item3"/>
+                <TreeViewItem Header="item4"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Mathimatic Algoritms">
+                <TreeViewItem Header="item1"/>
+                <TreeViewItem Header="item2"/>
+                <TreeViewItem Header="item3"/>
+                <TreeViewItem Header="item4"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Regular Expression" />
+            <TreeViewItem Header="Text Operation" />
+            <TreeViewItem Header="Array Operation" />
+            <TreeViewItem Header="Database Connection" />
+            <TreeViewItem Header="Database Desconnection" />
+        </TreeView>
+        <TextBlock x:Name="tbResult" Grid.Column="1" HorizontalAlignment="Left" Margin="10,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="389" Width="440" Grid.ColumnSpan="2" Background="#FFF1ECEC"/>
+    </Grid>
+</Window>

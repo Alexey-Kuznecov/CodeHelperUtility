@@ -11,7 +11,7 @@ namespace CodeHelperWPF.Data
 
         /// <summary>Метод GetLanguages() открывает соединения с БД. Посредством команд <see cref="F:System.Data.SQLite"/> формируется строка запроса.
         /// Если в таблице имеются записи то создаются экземпляры объекта CodeData, в авто-свойтва экземпляров присваиваются получаемые данные</summary>
-        /// <returns>Возращает коллекцию объектов пользовательского типа CodeData</returns>
+        /// <returns>Возвращает коллекцию объектов пользовательского типа CodeData</returns>
         public CodeData[] GetLanguages()
         {
             OpenSQLite();
@@ -24,12 +24,12 @@ namespace CodeHelperWPF.Data
 
             if (SQL.HasRows)
             {
-                int count = 0;
+                int counter = 0;
 
                 while (SQL.Read())
                 {
-                    result[count] = new CodeData() { Language = SQL["Language"] };
-                    count++;
+                    result[counter] = new CodeData() { Language = SQL["Language"] };
+                    counter++;
                 }
             }
 
@@ -37,7 +37,8 @@ namespace CodeHelperWPF.Data
 
             return result;
         }
-
+        /// <summary>Метод GetEntriesCount()</summary>
+        /// <returns>Возвращает количество записей в таблице Languages</returns>
         private static int GetEntriesCount()
         {
             SQLiteCommand CMD = _db.CreateCommand();
@@ -45,26 +46,32 @@ namespace CodeHelperWPF.Data
             return Convert.ToInt32(CMD.ExecuteScalar());
         }
 
+        /// <summary>Метод OpenSQLite() открывает соединение с БД</summary>
+        /// <returns>Ничего не возвращает</returns>
         private static void OpenSQLite()
         {
             _db.Open();
         }
-
+        /// <summary>Метод OpenSQLite() закрывает соединение с БД</summary>
+        /// <returns>Ничего не возвращает</returns>
         private static void CloseSQLite()
         {
             _db.Close();
         }
-
+        
+        //TODO: Реализовать метод добавления записей в базу данных и привязку через VIEW-MODEL.
         private void Add()
         {
-            //if (tbName.Text != "" && tbLastName.Text != "")
-            //{
-            //    SQLiteCommand CMD = _db.CreateCommand();
-            //    CMD.CommandText = "insert into Users(Firstname, Lastname) values(@fname, @lname)";
-            //    CMD.Parameters.Add("@fname", System.CodeData.DbType.String).Value = tbName.Text.ToUpper();
-            //    CMD.Parameters.Add("@lname", System.Data.DbType.String).Value = tbLastName.Text.ToUpper();
-            //    CMD.ExecuteNonQuery();
-            //}
+            /*
+                if (tbName.Text != "" && tbLastName.Text != "")
+                {
+                    SQLiteCommand CMD = _db.CreateCommand();
+                    CMD.CommandText = "insert into Users(Firstname, Lastname) values(@fname, @lname)";
+                    CMD.Parameters.Add("@fname", System.CodeData.DbType.String).Value = tbName.Text.ToUpper();
+                    CMD.Parameters.Add("@lname", System.Data.DbType.String).Value = tbLastName.Text.ToUpper();
+                    CMD.ExecuteNonQuery();
+                }
+            */
         }
     }
 }

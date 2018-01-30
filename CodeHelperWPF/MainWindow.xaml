@@ -8,9 +8,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="545.082" Width="685.656">
 
-    <!--<window.datacontext>
-        <vm:DataModelviewmodel />
-    </window.datacontext>-->
+    <Window.DataContext>
+        <vm:DataModelViewModel />
+    </Window.DataContext>
 
     <Grid x:Name="grid" Margin="0,30,-8,-6">
         <Grid.ColumnDefinitions>

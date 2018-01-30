@@ -6,7 +6,15 @@ namespace CodeHelperWPF.Data
 {
     class DataModel
     {
+        public object Topic { get; set; }
+
+        public object Subtopic { get; set; }
+
         public object Language { get; set; }
+
+        public object Content { get; set; }
+
+        public object Tags { get; set; }
 
         private static SQLiteConnection _db = new SQLiteConnection("Data Source=codesnp.db3; version=3");
 
@@ -15,7 +23,7 @@ namespace CodeHelperWPF.Data
         /// <returns>Возвращает коллекцию объектов пользовательского типа DataModel</returns>
         public DataModel[] GetLanguages()
         {
-            OpenConnection();
+            _db.Open();
 
             var result = new DataModel[GetEntriesCount()];
 
@@ -34,7 +42,7 @@ namespace CodeHelperWPF.Data
                 }
             }
 
-            CloseConnection();
+            _db.Close();
 
             return result;
         }
@@ -45,19 +53,7 @@ namespace CodeHelperWPF.Data
             SQLiteCommand CMD = _db.CreateCommand();
             CMD.CommandText = "SELECT COUNT(DISTINCT languages) FROM Library";
             return Convert.ToInt32(CMD.ExecuteScalar());
-        }
-        /// <summary>Метод OpenSQLite() открывает соединение с БД</summary>
-        /// <returns>Ничего не возвращает</returns>
-        private static void OpenConnection()
-        {
-            _db.Open();                  
-        }
-        /// <summary>Метод OpenSQLite() закрывает соединение с БД</summary>
-        /// <returns>Ничего не возвращает</returns>
-        private static void CloseConnection()
-        {
-            _db.Close();
-        }       
+        }   
         //TODO: Реализовать метод добавления записей в базу данных и привязку через VIEW-MODEL.
         private void Add()
         {

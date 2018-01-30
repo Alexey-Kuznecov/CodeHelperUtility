@@ -5,22 +5,22 @@ using CodeHelperWPF.Data;
 
 namespace CodeHelperWPF.ViewModel
 {
-    partial class CodeDataViewModel : DependencyObject
+    partial class DataModelViewModel : DependencyObject
     {
         private static void FilterText_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var current = d as CodeDataViewModel;
+            var current = d as DataModelViewModel;
             if (current != null)
             {
                 //current.Items.Filter = null;
-                //current.Items.Filter = current.FilterCodeData;
+                //current.Items.Filter = current.FilterDataModel;
             }
         }
 
-        private bool FilterCodeData(object obj)
+        private bool FilterDataModel(object obj)
         {
             bool result = true;
-            CodeData currnet = obj as CodeData;
+            DataModel currnet = obj as DataModel;
 
             if (!string.IsNullOrWhiteSpace(FilterText) && currnet != null /* &&
                 !currnet.FirstName.Contains(FilterText) && !currnet.LastName.Contains(FilterText)*/)

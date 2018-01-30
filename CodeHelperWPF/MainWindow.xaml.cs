@@ -16,7 +16,7 @@ namespace CodeHelperWPF
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            DataContext = new CodeDataViewModel();
+            DataContext = new DataModelViewModel();
         }
     }
 }

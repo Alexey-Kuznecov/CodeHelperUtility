@@ -12,7 +12,7 @@ using System.Collections;
 
 namespace CodeHelperWPF.ViewModel
 {
-    partial class CodeDataViewModel : DependencyObject
+    partial class DataModelViewModel : DependencyObject
     {
         public string FilterText
         {
@@ -22,7 +22,7 @@ namespace CodeHelperWPF.ViewModel
 
         // Using a DependencyProperty as the backing store for FilterText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FilterTextProperty =
-            DependencyProperty.Register("FilterText", typeof(string), typeof(CodeDataViewModel), new PropertyMetadata("", FilterText_Changed));
+            DependencyProperty.Register("FilterText", typeof(string), typeof(DataModelViewModel), new PropertyMetadata("", FilterText_Changed));
 
         public ICollectionView Items
         {
@@ -32,17 +32,16 @@ namespace CodeHelperWPF.ViewModel
 
         // Using a DependencyProperty as the backing store for Item.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("Items", typeof(ICollectionView), typeof(CodeDataViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register("Items", typeof(ICollectionView), typeof(DataModelViewModel), new PropertyMetadata(null));
 
 
-        public CodeDataViewModel()
+        public DataModelViewModel()
         {
-
-            CodeData connect = new CodeData();
+            DataModel db = new DataModel();
 
             Items = (CollectionView)
-                CollectionViewSource.GetDefaultView(connect.GetLanguages());
-            Items.Filter = FilterCodeData;
+                CollectionViewSource.GetDefaultView(db.GetLanguages());
+            Items.Filter = FilterDataModel;
         }
     }
 }

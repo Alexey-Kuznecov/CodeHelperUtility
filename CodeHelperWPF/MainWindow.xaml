@@ -9,7 +9,7 @@
         Title="MainWindow" Height="545.082" Width="685.656">
 
     <!--<window.datacontext>
-        <vm:codedataviewmodel />
+        <vm:DataModelviewmodel />
     </window.datacontext>-->
 
     <Grid x:Name="grid" Margin="0,30,-8,-6">
